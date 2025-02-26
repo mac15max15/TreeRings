@@ -1,24 +1,24 @@
 import pandas as pd
 import numpy as np
 
-tree_data = pd.read_excel('SouthernCaliforniaChronologiesTable.xlsx')
+tree_data = pd.read_excel('source_data/SouthernCaliforniaChronologiesTable.xlsx')
 
-bishop_rainfall = pd.read_csv('bishop_rainfall.csv')
+bishop_rainfall = pd.read_csv('source_data/bishop_rainfall.csv')
 bishop_rainfall = bishop_rainfall[bishop_rainfall['Annl'].notnull()].loc[:, ['Yr', 'Annl']].rename(columns={"Annl": "bishpp_rainfall", 'Yr': 'Year'})
 
-la_rainfall = pd.read_csv('la_rainfall.csv')
+la_rainfall = pd.read_csv('source_data/la_rainfall.csv')
 la_rainfall = la_rainfall[la_rainfall['Annl'].notnull()].loc[:, ['Yr', 'Annl']].rename(columns={"Annl": "la_rainfall", 'Yr': 'Year'})
 
-moab_rainfall = pd.read_csv('moab_rainfall.csv')
+moab_rainfall = pd.read_csv('source_data/moab_rainfall.csv')
 moab_rainfall = moab_rainfall[moab_rainfall['Annl'].notnull()].loc[:, ['Yr', 'Annl']].rename(columns={"Annl": "moab_rainfall", 'Yr': 'Year'})
 
-bishop_temp = pd.read_csv('bishop_temp.csv', na_values='M')
+bishop_temp = pd.read_csv('source_data/bishop_temp.csv', na_values='M')
 bishop_temp = bishop_temp[bishop_temp['Annual'].notnull()].loc[:, ['Year', 'Annual']].rename(columns={"Annual": "bishop_temp"})
 
-la_temp = pd.read_csv('la_temp.csv', na_values='M')
+la_temp = pd.read_csv('source_data/la_temp.csv', na_values='M')
 la_temp = la_temp[la_temp['Annual'].notnull()].loc[:, ['Year', 'Annual']].rename(columns={"Annual": "la_temp"})
 
-moab_temp = pd.read_csv('moab_temp.csv', na_values='M')
+moab_temp = pd.read_csv('source_data/moab_temp.csv', na_values='M')
 moab_temp = moab_temp[moab_temp['Annual'].notnull()].loc[:, ['Year', 'Annual']].rename(columns={"Annual": "moab_temp"})
 
 
