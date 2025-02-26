@@ -84,6 +84,6 @@ colorado_agg_data['avg_ring_width'] = colorado_agg_data[COLO_SITES].mean(axis=1)
 colorado_agg_data = colorado_agg_data.iloc[1:-1]
 
 
-socal_agg_data.to_csv('../aggregated_data/socal.csv', index=False)
-sierra_agg_data.to_csv('../aggregated_data/sierra.csv', index=False)
-colorado_agg_data.to_csv('../aggregated_data/colorado_river.csv', index=False)
+socal_agg_data.to_csv(f'../aggregated_data/{SOCAL}.csv', index=False)
+sierra_agg_data.to_csv(f'../aggregated_data/{SIERRA}.csv', index=False)
+colorado_agg_data.to_csv(f'../aggregated_data/{COLO}.csv', index=False)
