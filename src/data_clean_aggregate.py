@@ -22,33 +22,33 @@ tree_data = pd.read_excel('source_data/SouthernCaliforniaChronologiesTable.xlsx'
 
 # read the source data files and get the columns we need, then rename them to something intelligible
 # also throw out the null values for weather stuff
-bishop_rainfall = pd.read_csv('source_data/bishop_rainfall.csv')
+bishop_rainfall = pd.read_csv('../source_data/bishop_rainfall.csv')
 bishop_rainfall = bishop_rainfall[bishop_rainfall['Annl'].notnull()]
 bishop_rainfall = bishop_rainfall.loc[:, ['Yr', 'Annl']]
 bishop_rainfall = bishop_rainfall.rename(columns={"Annl": "bishop_rainfall", 'Yr': 'Year'})
 
-la_rainfall = pd.read_csv('source_data/la_rainfall.csv')
+la_rainfall = pd.read_csv('../source_data/la_rainfall.csv')
 la_rainfall = la_rainfall[la_rainfall['Annl'].notnull()]
 la_rainfall = la_rainfall.loc[:, ['Yr', 'Annl']]
 la_rainfall = la_rainfall.rename(columns={"Annl": "la_rainfall", 'Yr': 'Year'})
 
-moab_rainfall = pd.read_csv('source_data/moab_rainfall.csv')
+moab_rainfall = pd.read_csv('../source_data/moab_rainfall.csv')
 moab_rainfall = moab_rainfall[moab_rainfall['Annl'].notnull()]
 moab_rainfall = moab_rainfall.loc[:, ['Yr', 'Annl']]
 moab_rainfall = moab_rainfall.rename(columns={"Annl": "moab_rainfall", 'Yr': 'Year'})
 
 
-bishop_temp = pd.read_csv('source_data/bishop_temp.csv', na_values='M')
+bishop_temp = pd.read_csv('../source_data/bishop_temp.csv', na_values='M')
 bishop_temp = bishop_temp[bishop_temp['Annual'].notnull()]
 bishop_temp = bishop_temp.loc[:, ['Year', 'Annual']]
 bishop_temp = bishop_temp.rename(columns={"Annual": "bishop_temp"})
 
-la_temp = pd.read_csv('source_data/la_temp.csv', na_values='M')
+la_temp = pd.read_csv('../source_data/la_temp.csv', na_values='M')
 la_temp = la_temp[la_temp['Annual'].notnull()]
 la_temp = la_temp.loc[:, ['Year', 'Annual']]
 la_temp = la_temp.rename(columns={"Annual": "la_temp"})
 
-moab_temp = pd.read_csv('source_data/moab_temp.csv', na_values='M')
+moab_temp = pd.read_csv('../source_data/moab_temp.csv', na_values='M')
 moab_temp = moab_temp[moab_temp['Annual'].notnull()]
 moab_temp = moab_temp.loc[:, ['Year', 'Annual']]
 moab_temp = moab_temp.rename(columns={"Annual": "moab_temp"})
