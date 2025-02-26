@@ -1,3 +1,3 @@
 COLO_COLOR = 'coral'
-LA_COLOR = 'darkolivegreen'
+SOCAL_COLOR = 'darkolivegreen'
 SIERRA_COLOR = 'darkcyan'

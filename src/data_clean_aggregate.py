@@ -18,7 +18,7 @@ for more detail.
 '''
 
 
-tree_data = pd.read_excel('source_data/SouthernCaliforniaChronologiesTable.xlsx')
+tree_data = pd.read_excel('../source_data/SouthernCaliforniaChronologiesTable.xlsx')
 
 # read the source data files and get the columns we need, then rename them to something intelligible
 # also throw out the null values for weather stuff
@@ -55,7 +55,7 @@ moab_temp = moab_temp.rename(columns={"Annual": "moab_temp"})
 
 # extract the tree data columns corresponding to locations in each region
 southern_sierra_trees = tree_data.loc[:, ["Year", "PMN", "MWL", "MPS", "KSU", "LCU", "FCU", "PT9", "PT2", "LGU", "RRT", "HLC", "BIG", "LPK"]]
-la_trees = tree_data.loc[:, ["Year", "SBT", "GFS", "GFE", "GFN", "CTN", "CTS", "LCM"]]
+socal_trees = tree_data.loc[:, ["Year", "SBT", "GFS", "GFE", "GFN", "CTN", "CTS", "LCM"]]
 colorado_river_trees = tree_data.loc[:, ["Year", "PUM", "RED", "TRG", "DOU", "WIL", "RCK", "DJU", "NPC"]]
 
 
@@ -63,26 +63,26 @@ colorado_river_trees = tree_data.loc[:, ["Year", "PUM", "RED", "TRG", "DOU", "WI
 sierra_agg_data = southern_sierra_trees.merge(bishop_rainfall, on='Year', how='inner')
 sierra_agg_data = sierra_agg_data.merge(bishop_temp, on='Year', how='inner')
 sierra_agg_data['avg_ring_width'] = sierra_agg_data[["PMN", "MWL", "MPS", "KSU", "LCU", "FCU", "PT9", "PT2", "LGU", "RRT", "HLC", "BIG", "LPK"]].mean(axis=1)
-sierra_agg_data['bishop_temp_lag1'] = sierra_agg_data['bishop_temp'].shift(1)
+sierra_agg_data['bishop_rainfall_lag1'] = sierra_agg_data['bishop_rainfall'].shift(1)
 
 # remove the first row, which will have an na in the lag column, and the last row,
 # which will have na bc this year's data isnt all in yet
 sierra_agg_data = sierra_agg_data.iloc[1:-1]
 
 
-la_agg_data = la_trees.merge(la_temp, on='Year', how='inner')
-la_agg_data = la_agg_data.merge(la_rainfall, on='Year', how='inner')
-la_agg_data['la_temp_lag1'] = la_agg_data['la_temp'].shift(1)
-la_agg_data['avg_ring_width'] = la_agg_data[["SBT", "GFS", "GFE", "GFN", "CTN", "CTS", "LCM"]].mean(axis=1)
-la_agg_data = la_agg_data.iloc[1:-1]
+socal_agg_data = socal_trees.merge(la_temp, on='Year', how='inner')
+socal_agg_data = socal_agg_data.merge(la_rainfall, on='Year', how='inner')
+socal_agg_data['la_rainfall_lag1'] = socal_agg_data['la_rainfall'].shift(1)
+socal_agg_data['avg_ring_width'] = socal_agg_data[["SBT", "GFS", "GFE", "GFN", "CTN", "CTS", "LCM"]].mean(axis=1)
+socal_agg_data = socal_agg_data.iloc[1:-1]
 
 colorado_agg_data = colorado_river_trees.merge(moab_temp, on='Year', how='inner')
 colorado_agg_data = colorado_agg_data.merge(moab_rainfall, on='Year', how='inner')
-colorado_agg_data['moab_temp_lag1'] = colorado_agg_data['moab_temp'].shift(1)
+colorado_agg_data['moab_rainfall_lag1'] = colorado_agg_data['moab_rainfall'].shift(1)
 colorado_agg_data['avg_ring_width'] = colorado_agg_data[["PUM", "RED", "TRG", "DOU", "WIL", "RCK", "DJU", "NPC"]].mean(axis=1)
 colorado_agg_data = colorado_agg_data.iloc[1:-1]
 
 
-la_agg_data.to_csv('aggregated_data/la.csv', index=False)
-sierra_agg_data.to_csv('aggregated_data/sierra.csv', index=False)
-colorado_agg_data.to_csv('aggregated_data/colorado_river.csv', index=False)
+socal_agg_data.to_csv('../aggregated_data/socal.csv', index=False)
+sierra_agg_data.to_csv('../aggregated_data/sierra.csv', index=False)
+colorado_agg_data.to_csv('../aggregated_data/colorado_river.csv', index=False)
