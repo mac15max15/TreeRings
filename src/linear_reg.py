@@ -4,7 +4,7 @@ from sklearn.preprocessing import StandardScaler
 
 from constants import *
 
-data={}
+data = {}
 
 def load_data(region):
     data[region] = pd.read_csv(f'../aggregated_data/{region}.csv')
