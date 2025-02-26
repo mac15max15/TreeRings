@@ -6,8 +6,8 @@ from constants import *
 
 DOT_SIZE = 0.05
 
-socal_data = pd.read_csv(f'../aggregated_data/socal.csv')
-sierra_data = pd.read_csv(f'../aggregated_data/sierra.csv')
+socal_data = pd.read_csv(f'../../aggregated_data/socal.csv')
+sierra_data = pd.read_csv(f'../../aggregated_data/sierra.csv')
 colo_data = pd.read_csv('../aggregated_data/colo.csv')
 
 c_socal, c_sierra, c_colo = pat.Circle((0, 0)), pat.Circle((0, 0)), pat.Circle((0, 0))
