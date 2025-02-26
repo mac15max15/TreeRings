@@ -13,6 +13,7 @@ rainfall.
 Note that the tree data is not 'raw' as the original authors of the study standardized
 and 'detrended' the data. See the method section of the study linked in 'source_data/sourcs.txt' 
 for more detail.
+********************************************************************************
 
 '''
 
@@ -20,6 +21,7 @@ for more detail.
 tree_data = pd.read_excel('source_data/SouthernCaliforniaChronologiesTable.xlsx')
 
 # read the source data files and get the columns we need, then rename them to something intelligible
+# also throw out the null values
 bishop_rainfall = pd.read_csv('source_data/bishop_rainfall.csv')
 bishop_rainfall = bishop_rainfall[bishop_rainfall['Annl'].notnull()]
 bishop_rainfall = bishop_rainfall.loc[:, ['Yr', 'Annl']]
@@ -57,32 +59,26 @@ la_trees = tree_data.loc[:, ["Year", "SBT", "GFS", "GFE", "GFN", "CTN", "CTS", "
 colorado_river_trees = tree_data.loc[:, ["Year", "PUM", "RED", "TRG", "DOU", "WIL", "RCK", "DJU", "NPC"]]
 
 
-# join it all up on year
+# join it all up on year and calculate mean and lags. toss the rows with any na values
 sierra_agg_data = southern_sierra_trees.join(bishop_temp.set_index('Year'), on='Year')
 sierra_agg_data = sierra_agg_data.join(bishop_rainfall.set_index('Year'), on='Year')
-
-# calculate mean and lag columns
-sierra_agg_data['avg_ring_width'] = sierra_agg_data[[
-    "PMN", "MWL", "MPS", "KSU", "LCU", "FCU", "PT9", "PT2", "LGU", "RRT", "HLC", "BIG", "LPK"
-]].mean(axis=1)
+sierra_agg_data['avg_ring_width'] = sierra_agg_data[["PMN", "MWL", "MPS", "KSU", "LCU", "FCU", "PT9", "PT2", "LGU", "RRT", "HLC", "BIG", "LPK"]].mean(axis=1)
 sierra_agg_data['bishop_temp_lag1'] = sierra_agg_data['bishop_temp'].shift(1)
-
-# filter out any row with an na value in it
 sierra_agg_data = sierra_agg_data[sierra_agg_data.notna().all(axis=1)]
 
-# Aggregate LA data
+
 la_agg_data = la_trees.join(la_temp.set_index('Year'), on='Year')
 la_agg_data = la_agg_data.join(la_rainfall.set_index('Year'), on='Year')
 la_agg_data['la_temp_lag1'] = la_agg_data['la_temp'].shift(1)
+la_agg_data['avg_ring_width'] = la_agg_data[["SBT", "GFS", "GFE", "GFN", "CTN", "CTS", "LCM"]].mean(axis=1)
 la_agg_data = la_agg_data[la_agg_data.notna().all(axis=1)]
 
-# Aggregate Colorado River data
 colorado_agg_data = colorado_river_trees.join(moab_temp.set_index('Year'), on='Year')
 colorado_agg_data = colorado_agg_data.join(moab_rainfall.set_index('Year'), on='Year')
 colorado_agg_data['moab_temp_lag1'] = colorado_agg_data['moab_temp'].shift(1)
+colorado_agg_data['avg_ring_width'] = colorado_agg_data[["PUM", "RED", "TRG", "DOU", "WIL", "RCK", "DJU", "NPC"]].mean(axis=1)
 colorado_agg_data = colorado_agg_data[colorado_agg_data.notna().all(axis=1)]
 
-# Save aggregated data to CSV files
 la_agg_data.to_csv('aggregated_data/la.csv', index=False)
 sierra_agg_data.to_csv('aggregated_data/sierra.csv', index=False)
 colorado_agg_data.to_csv('aggregated_data/colorado_river.csv', index=False)
