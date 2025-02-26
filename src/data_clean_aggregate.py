@@ -1,9 +1,10 @@
 import pandas as pd
-import numpy as np
+
+from constants import *
 
 '''
 *******************************************************************************
-This file takes in raw data from the tree ring dataset and historical weather data
+This file takes in data from the tree ring dataset and raw historical weather data
 and produces one output file for each region (la area, southern sierra, or upper
 colorado river basin). Each output csv has the tree ring data for the sample locations
 in that region, weather data for a city in the region, the average of the tree
@@ -62,7 +63,7 @@ colorado_river_trees = tree_data.loc[:, ["Year", "PUM", "RED", "TRG", "DOU", "WI
 # join it all up on year and calculate mean and lags.
 sierra_agg_data = southern_sierra_trees.merge(bishop_rainfall, on='Year', how='inner')
 sierra_agg_data = sierra_agg_data.merge(bishop_temp, on='Year', how='inner')
-sierra_agg_data['avg_ring_width'] = sierra_agg_data[["PMN", "MWL", "MPS", "KSU", "LCU", "FCU", "PT9", "PT2", "LGU", "RRT", "HLC", "BIG", "LPK"]].mean(axis=1)
+sierra_agg_data['avg_ring_width'] = sierra_agg_data[SIERRA_SITES].mean(axis=1)
 sierra_agg_data['bishop_rainfall_lag1'] = sierra_agg_data['bishop_rainfall'].shift(1)
 
 # remove the first row, which will have an na in the lag column, and the last row,
@@ -73,13 +74,13 @@ sierra_agg_data = sierra_agg_data.iloc[1:-1]
 socal_agg_data = socal_trees.merge(la_temp, on='Year', how='inner')
 socal_agg_data = socal_agg_data.merge(la_rainfall, on='Year', how='inner')
 socal_agg_data['la_rainfall_lag1'] = socal_agg_data['la_rainfall'].shift(1)
-socal_agg_data['avg_ring_width'] = socal_agg_data[["SBT", "GFS", "GFE", "GFN", "CTN", "CTS", "LCM"]].mean(axis=1)
+socal_agg_data['avg_ring_width'] = socal_agg_data[SOCAL_SITES].mean(axis=1)
 socal_agg_data = socal_agg_data.iloc[1:-1]
 
 colorado_agg_data = colorado_river_trees.merge(moab_temp, on='Year', how='inner')
 colorado_agg_data = colorado_agg_data.merge(moab_rainfall, on='Year', how='inner')
 colorado_agg_data['moab_rainfall_lag1'] = colorado_agg_data['moab_rainfall'].shift(1)
-colorado_agg_data['avg_ring_width'] = colorado_agg_data[["PUM", "RED", "TRG", "DOU", "WIL", "RCK", "DJU", "NPC"]].mean(axis=1)
+colorado_agg_data['avg_ring_width'] = colorado_agg_data[COLO_SITES].mean(axis=1)
 colorado_agg_data = colorado_agg_data.iloc[1:-1]
 
 
