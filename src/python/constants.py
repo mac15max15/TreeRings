@@ -10,8 +10,8 @@ BG_COLOR = 'whitesmoke'
 
 REGION_DISPLAY_NAMES = {
     SOCAL: 'Southern California',
-    COLO: 'Upper Colorado River Basin',
-    SIERRA: 'Southern Sierra'
+    SIERRA: 'Southern Sierra',
+    COLO: 'Upper Colorado River Basin'
 }
 
 
