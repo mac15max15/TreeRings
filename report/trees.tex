@@ -24,24 +24,39 @@ The tree ring data I use comes from the study \textit{University of Arizona Sout
 Tree data were collected at multiple sites in three broad regions: Southern California, the Southern Sierra Nevada, and the Upper Colorado River basin. The collection sites in Southern California are 3000-9000ft above sea level, lying somewhere along the transition from chaparall to alpine forest. The Southern Sierra sites are around 10,000ft and recieve significant winter snows despite being on the eastern (rain shadow) side of Sierra Crest. The Upper Colorado Basin Sites are in typical Great Basin environemnts: 6000-9000ft. above sea level and arid. 
 
 \begin{figure}
-	\includegraphics[width=\textwidth]{baldy.png}
+	\centering
+	\includegraphics[width=0.8\textwidth]{baldy.png}
 	\caption{Typical Southern California Transverse Range scene. Mount Baldy (10,064') background center-right}
 	\label{fig:baldy}
 \end{figure}
 
 \begin{figure}
-	\includegraphics[width=\textwidth]{cottonwood_lakes.png}
+	\centering
+	\includegraphics[width=0.8\textwidth]{cottonwood_lakes.png}
 	\caption{High Sierra Meadow in summer after heavy snow year. Mount Langley (14,032') center-right.}
 	\label{fig:cottonwood}
 \end{figure}
 
 \begin{figure}
-	\includegraphics[width=\textwidth]{arch.jpg}
+	\centering
+	\includegraphics[width=0.8\textwidth]{arch.jpg}
 	\caption{Skyline Arch at Arches National Park \cite{arch_pic}.}
 	\label{fig:arch}
 \end{figure}
 
-Weather data were trickier to find. Many of the sites where tree samples were taken are in remote areas that don't have extensive weather records. To get around this, I took my climate data from an arbitrary city in each region: Los Angeles, CA for Southern California, Bishop, CA, for the Southern Sierra, and Moab, UT for the Upper Colorado River Basin. \textbf{The climate these cities might differ significantly from the climate at the sample sites.  The city weather data are a just proxy for the whole region's climate in a given year.} For example, consider the Eastern Sierra, where I used weather data for Bishop, CA. Bishop is in the rain shadow of the Sierra Nevada and recieves significantly less precipitation than  the mountains that surround it. During the period 1993-2016, Bishop averaged 4.71 inches of precipitation per year,  while Mammoth Lakes, only 35 miles away, averaged 22.95. While Mammoth Lakes and Bishop have very different climates, a relatively wet in one will also be a
+Weather data were trickier to find. Many of the sites where tree samples were taken are in remote areas that don't have extensive weather records. To get around this, I took my climate data from an arbitrary city in each region: Los Angeles, CA for Southern California, Bishop, CA, for the Southern Sierra, and Moab, UT for the Upper Colorado River Basin. \textbf{The climate these cities might differ significantly from the climate at the sample sites.  The city weather data are just a proxy for the whole region's climate in a given year.} For example, consider the Eastern Sierra, where I used weather data from Bishop, CA. Bishop is in the rain shadow of the Sierra Nevada and recieves significantly less precipitation than  the mountains that surround it. During the period 1993-2016, Bishop averaged 4.71 inches of precipitation per year,  while Mammoth Lakes, only 35 miles away, averaged 22.95. While Mammoth Lakes and Bishop have very different climates, a relatively wet in year in one town will also be realtively wet and the other. 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{renotahoe.png}
+	\caption{Annual precipitation for Tahoe City and Reno over a 10 year period. The top plot shows absolute rain values in inches, and the bottom plot shows each datapoint as a z-score.}
+	\label{fig:reno_tahoe}
+\end{figure}
+We can clearly see that trend in figure \ref{fig:reno_tahoe}, which plots rainfall for another pair of cities: Tahoe City in the Sierra Nevada and Reno in its rain shadow. Although Tahoe City gets around four times as much precipitation as Reno, if we normalize the data for each city seperately we can see that they almost always trend the same way; a year that sees one standard deviation above average rainfall in Reno will likely see precipitation one standard deviation above the average in Lake Tahoe.
+
+The upshot is that we can confidently describe historical weather trends at tree ring collection sites even if the nearest weather station is tens of miles away and in a drastically different climate. Unless noted otherwise, all statistical calculations use the scaled and normalized weather data. I have only preserved the absolute values where comparisons between regions requires it.
+
+
 
 
 
