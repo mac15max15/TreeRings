@@ -13,7 +13,7 @@
 \maketitle
 
 \section{Preface}
-The  American West has the largest, tallest, and oldest trees in the world. Those superlative trees, however, are often found in environments that are harsh either due to their aridity or their bitter winters. While the high mountains of the Sierra Nevada and the Transverse Ranges have consistent yearly precipitation in the form of winter snow, plants lower down depend on fickle rains that sometimes fail for years on end.
+The  American West has the largest, tallest, and oldest trees in the world. Those superlative trees, however, are found in environments that are harsh either due to their aridity or their bitter winters. While the high mountains of the Sierra Nevada and the Transverse Ranges have consistent yearly precipitation in the form of winter snow, plants lower down depend on fickle rains that sometimes fail for years on end.
 
 In the home of the world's oldest trees, tree rings encode that climate in a history stretching back almost two thousand years. Interpreting that history and using it to make predictions about the future is of huge practical value, as California has the largest agricultural output of any state. Sierra Nevada snowmelt trapped in resevoirs and Colorado River water pumped in by aqueduct irragate most of those farms. Tree rings give climate scientists a window into how the snowpack and rivers looked hundreds of years in the past, which is only becoming more important in the era of climate change.
 
@@ -27,25 +27,25 @@ The study covers 29 collection sites distributed among three broad regions: Sout
 \begin{figure}
 	\centering
 	\includegraphics[width=0.8\textwidth]{baldy.png}
-	\caption{Typical Southern California Transverse Range scene. Mount Baldy (10,064') background center-right}
+	\caption{Typical scene high in Southern California's transverse ranges. Mount Baldy (10,064') in center-right background \cite{me}.}
 	\label{fig:baldy}
 \end{figure}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.8\textwidth]{cottonwood_lakes.png}
-	\caption{High Sierra Meadow in summer after heavy snow year. Mount Langley (14,032') center-right.}
+	\caption{High Sierra Meadow in summer after heavy snow year. Mount Langley (14,032') at right\cite{me}.}
 	\label{fig:cottonwood}
 \end{figure}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.8\textwidth]{arch.jpg}
-	\caption{Skyline Arch at Arches National Park \cite{arch_pic}.}
+	\caption{Skyline Arch at Arches National Park, in the Upper Colorado River basin. \cite{arch_pic}.}
 	\label{fig:arch}
 \end{figure}
 
-Weather data proved trickier to find. Many of the sites where tree samples were taken are in remote areas that don't have extensive weather records. To get around this, I took my climate data from an arbitrary city in each region: Los Angeles, CA for Southern California, Bishop, CA, for the Southern Sierra, and Moab, UT for the Upper Colorado River Basin. \textbf{The climate these cities might differ significantly from the climate at the sample sites.  The city weather data are just a proxy for the whole region's climate in a given year.} For example, consider the Eastern Sierra, where I used weather data from Bishop, CA. Bishop is in the rain shadow of the Sierra Nevada and recieves significantly less precipitation than  the mountains that surround it. During the period 1993-2016, Bishop averaged 4.71 inches of precipitation per year,  while Mammoth Lakes, only 35 miles away, averaged 22.95.However, although Mammoth Lakes and Bishop may have very different climates, a relatively wet in year in one town will also be realtively wet and the other. 
+Weather data proved trickier to find. Many of the sites where tree samples were taken are in remote areas that don't have extensive weather records. To get around this, I took my climate data from an arbitrary city in each region: Los Angeles, CA for Southern California, Bishop, CA, for the Southern Sierra, and Moab, UT for the Upper Colorado River Basin. \textbf{The climate in these cities might differ significantly from the climate at the sample sites.  The city weather data are just a proxy for the whole region's climate in a given year.} For example, consider the Eastern Sierra, where I used weather data from Bishop, CA. Bishop is in the rain shadow of the Sierra Nevada and recieves significantly less precipitation than  the mountains that surround it. During the period 1993-2016, Bishop averaged 4.71 inches of precipitation per year,  while Mammoth Lakes, only 35 miles away, averaged 22.95. Although Mammoth Lakes and Bishop may have very different climates, we can exploit the fact that a relatively wet in year in one town will also be relatively wet in the other. 
 
 \begin{figure}
 	\centering
@@ -64,8 +64,17 @@ The first question I aim to answer is how tree ring growth relates to short term
 	\centering
 	\includegraphics[width=0.4\textwidth]{precip_scatter.png}
 	\includegraphics[width=0.4\textwidth]{temp_scatter.png}
-	\caption{Scatter plots of tree ring width versus precipitation and temperature. The dots are colored according to which region the datapoint comes from.}
+	\caption{Scatter plots of tree ring width versus precipitation and temperature. The dots are colored according to which region the datapoint comes from. }
+	\label{fig:weather_scatter}
 \end{figure} 
+
+The precipatation scatter plot (figure \ref{fig:weather_scatter}) shows a clear direct correlation between rainfall and ring growth. With the sheer quantity of data, however, that is about the only thing that we can easily tease out from the scatter plots. It is hard to see differences in trends between the regions, and the temperature scatter plot is almost completely unintelligable.
+
+The simplest solution is often the  best, and in this case the a linear regression was both. For each region, I ran a regression of the form
+$$
+\widehat{ringwidth} = \hat{\beta_0} + 
+$$
+
 
 
 
@@ -82,6 +91,9 @@ The first question I aim to answer is how tree ring growth relates to short term
 	
 	\bibitem{arch_pic}
 	S. Acharya, The Skyline Arch at Arches National Park, Utah, USA. 2009.
+	
+	\bibitem{me}
+	I (Max Caragozian) took this picture.
 \end{thebibliography}
 
 
