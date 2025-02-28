@@ -12,9 +12,12 @@ in that region, weather data for a city in the region, the average of the tree
 ring growth over all the locations in that region, and a one year lag of recorded 
 rainfall.
 
-Note that the tree data is not 'raw' as the original authors of the study standardized
-and 'detrended' the data. See the method section of the study linked in 'source_data/sources.txt' 
-for more detail.
+A lot of this could've been refactored into functions or to use variables defined
+in constants.py, but since it only runs once and I'm lazy I haven't done it.
+As far as I can tell it works, and the ugliness of this code allows the rest
+of the code to be pretty.
+
+-Max
 ********************************************************************************
 
 '''

@@ -18,7 +18,6 @@ tahoe_data = tahoe_data[tahoe_data['Yr'] > 2013]
 tahoe_data = tahoe_data[['Yr', 'Annl']]
 
 aggregated_data = reno_data.merge(tahoe_data, on='Yr', suffixes=('_reno', '_tahoe'))
-aggregated_data['ratio'] = aggregated_data['Annl_tahoe']/aggregated_data['Annl_reno']
 aggregated_data['z_tahoe'] = StandardScaler().fit_transform(aggregated_data['Annl_tahoe'].values.reshape(-1,1))
 aggregated_data['z_reno'] = StandardScaler().fit_transform(aggregated_data['Annl_reno'].values.reshape(-1,1))
 
@@ -55,7 +54,7 @@ ax2.get_legend().remove()
 
 ax2.set_xlabel('Year')
 ax2.set_ylabel('Precipitation (z-score)')
-ax1.legend(['Tahoe', 'Reno'], loc='upper right')
+ax1.legend(['Tahoe', 'Reno'], loc='upper right', framealpha=1, facecolor=LEGEND_BG_COLOR)
 fig.suptitle('Annual Precipitation for Lake Tahoe and Reno')
 
 fig.savefig('../../graphics/renotahoe.png', dpi=GRAPH_DPI)

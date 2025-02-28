@@ -7,6 +7,7 @@ COLO_COLOR = 'coral'
 SOCAL_COLOR = 'darkolivegreen'
 SIERRA_COLOR = 'darkcyan'
 BG_COLOR = 'whitesmoke'
+LEGEND_BG_COLOR = 'w'
 
 REGION_DISPLAY_NAMES = {
     SOCAL: 'Southern California',
