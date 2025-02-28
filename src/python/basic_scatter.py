@@ -23,12 +23,13 @@ ax.scatter(colo_data['scaled_rainfall'], colo_data['avg_ring_width'], color=COLO
 ax.set_xlabel('Annual Rainfall (z-score)')
 ax.set_ylabel('Tree Ring Growth')
 
+
 fig2, ax2 = plt.subplots(squeeze=True, figsize=(6, 8))
 ax2.set_facecolor(BG_COLOR)
 ax2.scatter(socal_data['scaled_temp'], socal_data['avg_ring_width'], color=SOCAL_COLOR, linewidths=DOT_SIZE)
 ax2.scatter(sierra_data['scaled_temp'], sierra_data['avg_ring_width'], color=SIERRA_COLOR, linewidths=DOT_SIZE)
 ax2.scatter(colo_data['scaled_temp'], colo_data['avg_ring_width'], color=COLO_COLOR, linewidths=DOT_SIZE)
-ax2.legend([c_socal, c_sierra, c_colo], REGION_DISPLAY_NAMES.values(), facecolor=LEGEND_BG_COLOR)
+ax2.legend([c_socal, c_sierra, c_colo], REGION_DISPLAY_NAMES.values(), facecolor=LEGEND_BG_COLOR, framealpha=1)
 ax2.set_xlabel('Average Annual Temp (z-score)')
 
 
