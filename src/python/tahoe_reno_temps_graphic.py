@@ -51,8 +51,7 @@ ax2.grid(True)
 ax1.get_legend().remove()
 ax2.get_legend().remove()
 
-
-ax2.set_xlabel('Year')
+ax2.set_xlabel('')
 ax2.set_ylabel('Precipitation (z-score)')
 ax1.legend(['Tahoe', 'Reno'], loc='upper right', framealpha=1, facecolor=LEGEND_BG_COLOR)
 fig.suptitle('Annual Precipitation for Lake Tahoe and Reno')

@@ -1,9 +1,12 @@
 \documentclass[]{article}
 
 \usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{amsmath}
 \graphicspath{ {./../graphics/} }
-%opening
-\title{trees wip}
+
+
+\title{trees title wip}
 \author{Max Caragozian}
 
 \begin{document}
@@ -13,11 +16,10 @@
 \maketitle
 
 \section{Preface}
-The  American West has the largest, tallest, and oldest trees in the world. Those superlative trees, however, are found in environments that are harsh either due to their aridity or their bitter winters. While the high mountains of the Sierra Nevada and the Transverse Ranges have consistent yearly precipitation in the form of winter snow, plants lower down depend on fickle rains that sometimes fail for years on end.
 
-In the home of the world's oldest trees, tree rings encode that climate in a history stretching back almost two thousand years. Interpreting that history and using it to make predictions about the future is of huge practical value, as California has the largest agricultural output of any state. Sierra Nevada snowmelt trapped in resevoirs and Colorado River water pumped in by aqueduct irragate most of those farms. Tree rings give climate scientists a window into how the snowpack and rivers looked hundreds of years in the past, which is only becoming more important in the era of climate change.
+In the home of the world's oldest trees, tree rings encode a climate history stretching back almost two thousand years. Interpreting that history and using it to make predictions about the future, especially future droughts, is of huge practical value, as California has the largest agricultural output of any state. Sierra Nevada snowmelt trapped in resevoirs and Colorado River water pumped in by aqueduct irragate most of those farms. Tree rings give climate scientists a window into how the snowpack and rivers looked hundreds of years in the past, which is only becoming more important in the era of climate change.
 
-I grew up in Los Angeles and spent weekends and summers tromping around the natural wonderland that California has to offer. I gained an appreciation for the sheer variety of climates and ecosystems the West contains. Chaparall with regal old oaks, subalpine forests with fir and pine, alpine tundra where krumholzed lodgepole pines cling to the edge of the tree line: All can be found within thirty miles of Los Angeles, and each biome brings back warm memories for me. I learned very quickly that in Southern California, a good year for plants is synonymous with a wet year. I aim to use tree ring and historical data to quantify that relationshoip and investigate how climate change might affect it. 
+I grew up in Los Angeles and spent weekends and summers exploring the natural wonderlands that California has to offer. I gained an appreciation for the sheer variety of climates and ecosystems the American West contains. Within 30 miles of Los Angeles, one can hike through chaparall and ancient  oaks, subalpine forests with fir and ponderosa pine, and alpine tundra where krumholzed lodgepole pines cling to the edge of the tree line. Each tree has its own story to tell, and each in turn is being affected by the very climate it records. I aim to use the tree ring data and historical climate data to quantify that relationship.
 
 \section{Sources and Locations}
 The tree ring data I use come from the study \textit{University of Arizona Southern California Tree-Ring Study} by D. M. Meko, C. A. Woodhouse, and E. R. Bigio \cite{tree_study}. The authors used tree ring data to construct estimates of historical river flow. In addition to publishing their hydrological reconstructions, the authors also published the tree ring width datasets on which those reconstructions were built. One important consideration is that the tree ring width data not raw. The authors ``detrended'' the data to remove long-term biological noise such as the effects of a tree aging, and the result is that the each ring width datapoint is a unitless quantity and not an actual measure of length. See secion 2.1 of the study for more details\cite{tree_study}.
@@ -27,43 +29,43 @@ The study covers 29 collection sites distributed among three broad regions: Sout
 \begin{figure}
 	\centering
 	\includegraphics[width=0.8\textwidth]{baldy.png}
-	\caption{Typical scene high in Southern California's transverse ranges. Mount Baldy (10,064') in center-right background \cite{me}.}
+	\caption{Typical scene high in Southern California's transverse ranges. Mount Baldy (10,064') at center-right in background\cite{me}.}
 	\label{fig:baldy}
 \end{figure}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.8\textwidth]{cottonwood_lakes.png}
-	\caption{High Sierra Meadow in summer after heavy snow year. Mount Langley (14,032') at right\cite{me}.}
+	\caption{High Sierra meadow in summer after heavy snow year. Mount Langley (14,032') at right\cite{me}.}
 	\label{fig:cottonwood}
 \end{figure}
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.8\textwidth]{arch.jpg}
-	\caption{Skyline Arch at Arches National Park, in the Upper Colorado River basin. \cite{arch_pic}.}
+	\caption{Skyline Arch at Arches National Park, in the Upper Colorado River basin\cite{arch_pic}.}
 	\label{fig:arch}
 \end{figure}
 
 Weather data proved trickier to find. Many of the sites where tree samples were taken are in remote areas that don't have extensive weather records. To get around this, I took my climate data from an arbitrary city in each region: Los Angeles, CA for Southern California, Bishop, CA, for the Southern Sierra, and Moab, UT for the Upper Colorado River Basin. \textbf{The climate in these cities might differ significantly from the climate at the sample sites.  The city weather data are just a proxy for the whole region's climate in a given year.} For example, consider the Eastern Sierra, where I used weather data from Bishop, CA. Bishop is in the rain shadow of the Sierra Nevada and recieves significantly less precipitation than  the mountains that surround it. During the period 1993-2016, Bishop averaged 4.71 inches of precipitation per year,  while Mammoth Lakes, only 35 miles away, averaged 22.95. Although Mammoth Lakes and Bishop may have very different climates, we can exploit the fact that a relatively wet in year in one town will also be relatively wet in the other. 
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
-	\includegraphics[width=0.8\textwidth]{renotahoe.png}
+	\includegraphics[width=0.9\textwidth]{renotahoe.png}
 	\caption{Annual precipitation for Tahoe City and Reno over a 10 year period. The top plot shows absolute rain values in inches, and the bottom plot shows each datapoint as a z-score.}
 	\label{fig:reno_tahoe}
 \end{figure}
 We can clearly see that trend in figure \ref{fig:reno_tahoe}, which plots rainfall for another pair of cities: Tahoe City in the Sierra Nevada and Reno in its rain shadow. Although Tahoe City gets around four times as much precipitation as Reno, if we normalize the data for each city seperately we can see that they almost always trend the same way; a year that sees one standard deviation above average rainfall in Reno will likely see precipitation one standard deviation above the average in Tahoe City.
 
-The upshot is that we can confidently describe historical weather trends at tree ring collection sites even if the nearest weather station is tens of miles away and in a drastically different climate. Unless noted otherwise, all statistical calculations use the scaled and normalized weather data. I have only preserved the absolute values where comparisons between regions requires it.
+The upshot is that we can confidently describe historical weather trends at tree ring collection sites even if the nearest weather station is tens of miles away and in a drastically different climate. Unless noted otherwise, all statistical calculations and graphics use the scaled and normalized weather data. I have only preserved the raw values where comparisons between regions require it.
 
 \section{What Weather Makes the Trees Happy?}
 The first question I aim to answer is how tree ring growth relates to short term variation in climate. Is my childhood notion that trees like a wet year supported by the data?  I made scatter plots plotting observed tree ring growth against the scaled rainfall and temperature.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.4\textwidth]{precip_scatter.png}
-	\includegraphics[width=0.4\textwidth]{temp_scatter.png}
+	\includegraphics[width=0.45\textwidth]{precip_scatter.png}
+	\includegraphics[width=0.45\textwidth]{temp_scatter.png}
 	\caption{Scatter plots of tree ring width versus precipitation and temperature. The dots are colored according to which region the datapoint comes from. }
 	\label{fig:weather_scatter}
 \end{figure} 
@@ -71,10 +73,40 @@ The first question I aim to answer is how tree ring growth relates to short term
 The precipatation scatter plot (figure \ref{fig:weather_scatter}) shows a clear direct correlation between rainfall and ring growth. With the sheer quantity of data, however, that is about the only thing that we can easily tease out from the scatter plots. It is hard to see differences in trends between the regions, and the temperature scatter plot is almost completely unintelligable.
 
 The simplest solution is often the  best, and in this case the a linear regression was both. For each region, I ran a regression of the form
-$$
-\widehat{ringwidth} = \hat{\beta_0} + 
-$$
 
+\begin{equation}
+avgringwidth_t = \hat{\beta}_0 + \hat{\beta}_1 precip_t + \hat{\beta}_2 precip_{t-1} + \hat{\beta}_3 temperature_t
+\label{eq:linreg}
+\end{equation}
+
+
+where $t$ is the year. The results of the regression show the ceteris paribis effects of precipitation, the previous year's precipitation, and temperature on the average tree ring width over all the sites in a region.
+
+\begin{table}
+\begin{center}
+\begin{tabular}{| c | c | c c c|}
+\hline
+Region & Coefficient & Estimate & Standard Error & p-value\\
+\hline
+\multirow{3}{*}{Southern California}
+& $\hat{\beta_1} $&0.083&0.013& $1.29\cdot 10^{-8}$\\
+& $\hat{\beta_2} $&0.028& 0.013& 0.038 \\
+&$\hat{\beta_3}$& -0.003 & 0.013&0.782\\  \hline
+\multirow{3}{*}{Southern Sierra}
+& $\hat{\beta_1} $&0.105&0.047& 0.031 \\
+& $\hat{\beta_2} $&0.093& 0.044& 0.037 \\
+&$\hat{\beta_3}$& -0.111 & 0.047 &0.022\\ \hline
+\multirow{3}{*}{Upper Colorado} 
+& $\hat{\beta_1} $&0.043&0.026& 0.112\\
+& $\hat{\beta_2} $&0.074& 0.027& 0.008 \\
+&$\hat{\beta_3}$& -0.057 & 0.026&0.038\\  \hline
+
+\end{tabular}
+\end{center}
+\caption{Results of the regression described in equation \ref{eq:linreg}. Weather data are inputted as z-scores. P-values assume $ H_o: \beta_i = 0$.}
+\end{table}
+
+All three regions had a positive estimate for $\hat{\beta_1}$ meaning that relatively higher rainfall is correlated with increased tree ring growth, but the magnitudes and errors differ among the regions. While Southern California and the Southern Sierra had relatively small ($<0.05$) p-values for $\hat{\beta_1}$, the magnitude and significance of $\hat{\beta_1}$  were smaller in the Upper Colorado.  The interesting takeaway is that in the Upper Colorado, the driest of the three regions, year to year rainfall differences matter less than in Southern California and the Sierra. In general,  $\hat{\beta_3}$, the effect of temperature, was much less significant. Ignoring Southern California, where there is almost no discernable correlation at all, warmer years are generally associated less tree growth even when controlling for the effects of rainfall.
 
 
 
