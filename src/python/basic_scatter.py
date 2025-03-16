@@ -10,11 +10,13 @@ socal_data = pd.read_csv('../../aggregated_data/socal.csv')
 sierra_data = pd.read_csv('../../aggregated_data/sierra.csv')
 colo_data = pd.read_csv('../../aggregated_data/colo.csv')
 
+# weird trick for getting the legend do work
 c_socal, c_sierra, c_colo = pat.Circle((0, 0)), pat.Circle((0, 0)), pat.Circle((0, 0))
 c_socal.set_color(SOCAL_COLOR)
 c_sierra.set_color(SIERRA_COLOR)
 c_colo.set_color(COLO_COLOR)
 
+# tree ring vs precip plot
 fig, ax = plt.subplots(squeeze=True, figsize=(6, 8))
 ax.set_facecolor(BG_COLOR)
 ax.scatter(socal_data['scaled_rainfall'], socal_data['avg_ring_width'], color=SOCAL_COLOR, linewidths=DOT_SIZE)
